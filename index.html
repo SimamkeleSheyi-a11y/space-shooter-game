@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Space Shooter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        #gameContainer {
+            position: relative;
+        }
+        
+        canvas {
+            display: block;
+            background: linear-gradient(180deg, #000000 0%, #0a0a2e 50%, #000814 100%);
+            border: 3px solid #0ff;
+            box-shadow: 
+                0 0 20px #0ff,
+                0 0 40px #0ff,
+                inset 0 0 20px rgba(0,255,255,0.1);
+        }
+        
+        /* HUD Overlay */
+        #hud {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            color: #0ff;
+            pointer-events: none;
+            text-shadow: 0 0 10px #0ff;
+        }
+        
+        #score {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        #lives {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+        
+        #lives span {
+            color: #f00;
+            font-size: 24px;
+        }
+        
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
+            padding: 40px;
+            border: 3px solid #f00;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            box-shadow: 0 0 30px #f00;
+        }
+        
+        #gameOver.show {
+            display: block;
+        }
+        
+        #gameOver h1 {
+            color: #f00;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #f00;
+        }
+        
+        #gameOver p {
+            color: #0ff;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        /* Buttons */
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-family: 'Courier New', monospace;
+            background: #0ff;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        
+        button:hover {
+            background: #0cc;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #0ff;
+        }
+        
+        #restartBtn {
+            background: #f00;
+            color: #fff;
+        }
+        
+        #restartBtn:hover {
+            background: #c00;
+            box-shadow: 0 0 20px #f00;
+        }
+        
+        /* Controls Info */
+       #controls {
+            position: absolute;
+            bottom: 5px;  /* ← CHANGED from 20px to 80px! */
+            left: 50%;
+            transform: translateX(-50%);
+            color: #0ff;
+            font-size: 14px;
+            text-align: bottom;
+            opacity: 0.7;
+            background: rgba(0, 0, 0, 0.7);  /* ← ADDED background! */
+            padding: 10px 20px;  /* ← ADDED padding! */
+            border-radius: 5px;  /* ← ADDED rounded corners! */
+        }
+        /* Start Screen */
+        #startScreen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.9);
+            padding: 40px;
+            border: 3px solid #0ff;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 30px #0ff;
+        }
+        
+        #startScreen h1 {
+            color: #0ff;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #0ff;
+        }
+        
+        #startScreen p {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="glcanvas" width="800" height="600"></canvas>
+        
+        <!-- HUD -->
+        <div id="hud">
+            <div id="score">SCORE: 0</div>
+            <div id="lives">LIVES: <span>❤️❤️❤️</span></div>
+        </div>
+        
+        <!-- Start Screen -->
+        <div id="startScreen">
+            <h1>SPACE SHOOTER</h1>
+            <p>Defend Earth from alien invasion!</p>
+            <p>Arrow Keys or WASD to  Move  Space: Shoot</p>
+            <button id="startBtn">START GAME</button>
+        </div>
+        
+        <!-- Game Over Screen -->
+        <div id="gameOver">
+            <h1>GAME OVER</h1>
+            <p id="finalScore">FINAL SCORE: 0</p>
+            <button id="restartBtn">PLAY AGAIN</button>
+        </div> 
+    <script src = "space-shooter.js"></script>
+  
+</body>
+</html>
